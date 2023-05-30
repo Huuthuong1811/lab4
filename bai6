@@ -1,0 +1,224 @@
+---CNKSP----
+package Lab_4_6;
+
+import java.util.Scanner;
+public class CNKSP extends CongNhan {
+    private int soSanPham;
+    private double donGiaSanPham;
+    public CNKSP(String HoTen,String ngaySinh,String diaChi,String loaiCongNhan,int soSanPham,double donGiaSanPham){
+        super(HoTen,ngaySinh,diaChi,loaiCongNhan);
+        this.donGiaSanPham=donGiaSanPham;
+        this.soSanPham=soSanPham;
+    }
+
+    public void setSoSanPham(int soSanPham) {
+        this.soSanPham = soSanPham;
+    }
+
+    public void setDonGiaSanPham(double donGiaSanPham) {
+        this.donGiaSanPham = donGiaSanPham;
+    }
+
+    public int getSoSanPham() {
+        return soSanPham;
+    }
+
+    public double getDonGiaSanPham() {
+        return donGiaSanPham;
+    }
+    @Override
+    public void nhapLuong(){
+        Scanner nhap=new Scanner(System.in);
+        System.out.print("Nhap so san pham lam trong 1 thang:");
+        setSoSanPham(nhap.nextInt());
+        System.out.print("Nhap don gia cho san pham: ");
+        setDonGiaSanPham(nhap.nextDouble());
+    }
+    @Override
+    public void tinhLuong(){
+        double thuong, luongThang;
+        if(getSoSanPham()>=100){
+            thuong=1000000;
+        }
+        else if(getSoSanPham()>=150){
+            thuong=1500000;
+        }else{
+            thuong=0;
+        }
+        luongThang=getSoSanPham()*getDonGiaSanPham()+thuong;
+        System.out.println("Luong thang:"+luongThang+"vnd");
+    }
+
+}
+
+
+-----CNTCN----
+package Lab_4_6;
+
+import java.util.Scanner;
+public class CNTCN extends CongNhan {
+    private double luongCoBan;
+    private int heSoLuong;
+    private int soNgayCong;
+    public CNTCN(String HoTen,String ngaySinh,String diaChi,String loaiCongNhan,double luongCoBan,int heSoLuong,int soNgayCong){
+        super(HoTen,ngaySinh,diaChi,loaiCongNhan); 
+        this.luongCoBan=luongCoBan;
+        this.heSoLuong=heSoLuong;  
+        this.soNgayCong=soNgayCong;
+    }
+
+    public void setLuongCoBan(double luongCoBan) {
+        this.luongCoBan = luongCoBan;
+    }
+
+    public void setHeSoLuong(int heSoLuong) {
+        this.heSoLuong = heSoLuong;
+    }
+
+    public void setSoNgayCong(int soNgayCong) {
+        this.soNgayCong = soNgayCong;
+    }
+
+    public double getLuongCoBan() {
+        return luongCoBan;
+    }
+
+    public int getHeSoLuong() {
+        return heSoLuong;
+    }
+
+    public int getSoNgayCong() {
+        return soNgayCong;
+    }
+
+    @Override
+    public void nhapLuong(){
+        Scanner nhap=new Scanner(System.in);
+        System.out.print("Nhap luong thang co ban: ");
+        setLuongCoBan(nhap.nextDouble());
+        System.out.print("Nhap he so luong: ");
+        setHeSoLuong(nhap.nextInt());
+        System.out.print("Nhap so ngay cong: ");
+        setSoNgayCong(nhap.nextInt());
+    }
+    @Override
+    public void tinhLuong(){
+        double thuong,luongThang;
+        if(getSoNgayCong()>=20){
+        thuong=1.2*getLuongCoBan();
+    }
+        else{
+        thuong=0.0;
+    }
+        luongThang=getLuongCoBan()*getHeSoLuong()+thuong;
+        System.out.println("Luong thang: "+luongThang+" vnd");
+    }
+}
+
+-----CongNHan-----
+package Lab_4_6;
+
+import java.util.Scanner;
+public abstract class CongNhan {
+    private String HoTen;
+    private String ngaySinh;
+    private String diaChi;
+    private String loaiCongNhan;
+    public CongNhan(String HoTen,String ngaySinh,String diaChi,String loaiCongNhan){
+        this.HoTen=HoTen;
+        this.diaChi=diaChi;
+        this.loaiCongNhan=loaiCongNhan;
+        this.ngaySinh=ngaySinh;
+    }
+
+    public void setHoTen(String HoTen) {
+        this.HoTen = HoTen;
+    }
+
+    public void setNgaySinh(String ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    public void setLoaiCongNhan(String loaiCongNhan) {
+        this.loaiCongNhan = loaiCongNhan;
+    }
+
+    public String getHoTen() {
+        return HoTen;
+    }
+
+    public String getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public String getLoaiCongNhan() {
+        return loaiCongNhan;
+    }
+
+    public void nhapThongTin(){
+        Scanner nhap=new Scanner(System.in);
+        System.out.print("Nhap ho ten:");
+        setHoTen(nhap.nextLine());
+        System.out.print("Nhap ngay sinh:");
+        setNgaySinh(nhap.nextLine());
+        System.out.print("Nhap dia chi: ");
+        setDiaChi(nhap.nextLine());
+        do{
+        System.out.print("Nhap loai cong nhan \n 1:Cong nhan khoan san pham \n 2:Cong nhan tinh cong nhan \n nhap:");
+        setLoaiCongNhan(nhap.nextLine()); 
+        }while(!"1".equals(getLoaiCongNhan()) && !"2".equals(getLoaiCongNhan()));
+    }
+    public abstract void tinhLuong();
+    public abstract void nhapLuong();
+    public void inThongTin(){
+        System.out.println("*Ho ten:"+getHoTen());
+        System.out.println("*Dia chi:"+getDiaChi());
+        System.out.println("*Ngay sinh: "+getNgaySinh());
+        if("1".equals(getLoaiCongNhan())){
+            System.out.println("Loai cong nhan:CNKSP");
+        }else{
+            System.out.println("Loai cong nhan:CNTCN");
+        }      
+    }
+}
+
+
+-----test----
+package Lab_4_6;
+
+public class Test {
+    public static void main(String[] args) {
+    	CongNhan cn1=new CNKSP(null,null,null,null,0,0);
+        CongNhan cn2=new CNTCN(null,null,null,null,0,0,0);
+        cn1.nhapThongTin();
+        if("1".equals(cn1.getLoaiCongNhan())){
+            cn1.nhapLuong();
+            cn1.inThongTin();
+            cn1.tinhLuong();
+        }
+        else{
+            cn2.nhapLuong();
+            cn1.inThongTin();
+            cn2.tinhLuong();
+        }
+        cn2.nhapThongTin();
+        if("2".equals(cn2.getLoaiCongNhan())){
+            cn2.nhapLuong();
+            cn2.inThongTin();
+            cn2.tinhLuong();
+        }
+        else{
+            cn1.nhapLuong();
+            cn2.inThongTin();
+            cn1.tinhLuong();
+        }
+	}
+}
