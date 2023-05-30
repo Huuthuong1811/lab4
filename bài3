@@ -1,0 +1,123 @@
+package Lab_4_3;
+
+public class Employee extends Person{
+	private String employerName;
+    private String dateHired;
+
+	public Employee(String name, int age, String gender, String employerName, String dateHired) {
+		super(name, age, gender);
+		this.employerName = employerName;
+		this.dateHired = dateHired;
+	}
+
+	public String getEmployerName() {
+		return employerName;
+	}
+
+	public void setEmployerName(String employerName) {
+		this.employerName = employerName;
+	}
+
+	public String getDateHired() {
+		return dateHired;
+	}
+
+	public void setDateHired(String dateHired) {
+		this.dateHired = dateHired;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [employerName=" + employerName + ", dateHired=" + dateHired + "]";
+	}
+
+
+
+
+
+}
+
+
+--------part time employee
+package Lab_4_3;
+
+public class PartTimeEmployee extends Employee{
+    private int hoursPerWeek;
+
+	public PartTimeEmployee(String name, int age, String gender, String employerName, String dateHired,
+			int hoursPerWeek) {
+		super(name, age, gender, employerName, dateHired);
+		this.hoursPerWeek = hoursPerWeek;
+	}
+
+	public int getHoursPerWeek() {
+		return hoursPerWeek;
+	}
+
+	public void setHoursPerWeek(int hoursPerWeek) {
+		this.hoursPerWeek = hoursPerWeek;
+	}
+
+	@Override
+	public String toString() {
+		return "PartTimeEmployee [hoursPerWeek=" + hoursPerWeek + ", getEmployerName()=" + getEmployerName()
+				+ ", getDateHired()=" + getDateHired() + ", toString()=" + super.toString() + ", getName()=" + getName()
+				+ ", getAge()=" + getAge() + ", getGender()=" + getGender() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + "]";
+	}
+
+
+
+
+
+
+}
+
+---- person----
+package Lab_4_3;
+
+public class Person {
+    private String name;
+    private int age;
+    private String gender;
+	public Person(String name, int age, String gender) {
+
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", age=" + age + ", gender=" + gender + "]";
+	}
+
+
+}
+
+----test----
+package Lab_4_3;
+
+public class Test {
+    public static void main(String[] args) {
+    	PartTimeEmployee pte = new PartTimeEmployee("Tran Van A", 18, "Nam", "Tran Van A", "Hai Ngay", 30);
+    	System.out.println(pte.toString());
+	}
+}
